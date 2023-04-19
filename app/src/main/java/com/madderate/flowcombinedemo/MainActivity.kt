@@ -14,24 +14,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
-    private val exampleItems = listOf(
-        "你好",
-        "谢谢",
-        "小笼包",
-        "再见",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-    )
-
-
     private val viewModel by viewModels<MainViewModel>()
 
     private val addItemBtn: MaterialButton by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -50,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         itemListView.adapter = Adapter(this::onItemRemoved)
         addItemBtn.setOnClickListener {
-            viewModel.add(exampleItems.random())
+            viewModel.add(UUID.randomUUID()?.toString() ?: "${System.currentTimeMillis()}")
         }
         syncBtn.setOnClickListener {
             viewModel.sync()
