@@ -1,5 +1,6 @@
 package com.madderate.flowcombinedemo.data.main
 
+import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 import java.util.UUID
 
@@ -10,11 +11,15 @@ data class MainItemModel @JvmOverloads constructor(
 ) {
     class DiffCallback : DiffUtil.ItemCallback<MainItemModel>() {
         override fun areItemsTheSame(oldItem: MainItemModel, newItem: MainItemModel): Boolean {
-            return oldItem.id == newItem.id
+            val result = oldItem.id == newItem.id
+            Log.d("MainItemModel", "areItemsTheSame: result=$result")
+            return result
         }
 
         override fun areContentsTheSame(oldItem: MainItemModel, newItem: MainItemModel): Boolean {
-            return oldItem == newItem
+            val result = oldItem == newItem
+            Log.d("MainItemModel", "areContentsTheSame: result=$result")
+            return result
         }
 
         override fun getChangePayload(oldItem: MainItemModel, newItem: MainItemModel): Any? {
@@ -27,6 +32,7 @@ data class MainItemModel @JvmOverloads constructor(
                 map[EXTRA_CONTENT] = newItem.content
             }
             if (oldItem.isSelected != newItem.isSelected) {
+                Log.d("MainItemModel", "getChangePayload: oldItem.isSelected!=newItem.isSelected.")
                 map[EXTRA_IS_SELECTED] = newItem.isSelected
             }
             return map
