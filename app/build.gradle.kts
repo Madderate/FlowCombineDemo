@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId = "com.madderate.flowcombinedemo"
-        minSdk = 33
+        minSdk = 29
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.recyclerview)
+    implementation(libs.paging)
+    implementation(libs.paging.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
